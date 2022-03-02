@@ -2,24 +2,22 @@ import React, { useState } from 'react';
 export default function Home() {
   const [textInput, setTextInput] = useState('');
   const [changedText, setChangedText] = useState('');
+  const [capitaze, setCapitalize] = useState(false);
+  const [textTransformation, setTextTransformation] = useState('none');
 
   const onCaps = (text) => {
-    const capsText = text.toUpperCase();
-
-    setChangedText(capsText);
+    setTextTransformation('uppercase');
+    setChangedText(textInput);
   };
 
   const onLower = (text) => {
-    const capsText = text.toLowerCase();
-
-    setChangedText(capsText);
+    setTextTransformation('lowercase');
+    setChangedText(text);
   };
 
   const capitalize = (text) => {
-    const capitalizedText = text && text[0].toUpperCase() + text.slice(1);
-    console.log(capitalizedText);
-
-    setChangedText(capitalizedText);
+    setTextTransformation('capitalize');
+    setChangedText(text);
   }
 
   return (
@@ -37,7 +35,7 @@ export default function Home() {
       <button onClick={() => onCaps(textInput)}>UpperCase</button>
       <button onClick={() => onLower(textInput)}>LowerCase</button>
       <button onClick={() => capitalize(textInput)}>Capitalize</button>
-      <p>{changedText}</p>
+      <p style={{ textTransform: textTransformation} }>{changedText}</p>
     </div>
   );
 }
