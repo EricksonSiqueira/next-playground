@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 export default function Home() {
   const [textInput, setTextInput] = useState('');
+  const [changedText, setChangedText] = useState('');
 
   const onCaps = (text) => {
     const capsText = text.toUpperCase();
 
-    setTextInput(capsText);
+    setChangedText(capsText);
   };
 
   const onLower = (text) => {
     const capsText = text.toLowerCase();
 
-    setTextInput(capsText);
+    setChangedText(capsText);
   };
 
   return (
@@ -28,7 +29,7 @@ export default function Home() {
       </label>
       <button onClick={() => onCaps(textInput)}>UpperCase</button>
       <button onClick={() => onLower(textInput)}>LowerCase</button>
-      <p>{textInput}</p>
+      <p>{changedText}</p>
     </div>
   );
 }
