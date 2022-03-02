@@ -15,6 +15,13 @@ export default function Home() {
     setChangedText(capsText);
   };
 
+  const capitalize = (text) => {
+    const capitalizedText = text && text[0].toUpperCase() + text.slice(1);
+    console.log(capitalizedText);
+
+    setChangedText(capitalizedText);
+  }
+
   return (
     <div>
       <h1>Converta seus textos</h1>
@@ -29,6 +36,7 @@ export default function Home() {
       </label>
       <button onClick={() => onCaps(textInput)}>UpperCase</button>
       <button onClick={() => onLower(textInput)}>LowerCase</button>
+      <button onClick={() => capitalize(textInput)}>Capitalize</button>
       <p>{changedText}</p>
     </div>
   );
