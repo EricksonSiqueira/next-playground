@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 export default function Home() {
   const [textInput, setTextInput] = useState('');
   const [changedText, setChangedText] = useState('');
-  const [capitaze, setCapitalize] = useState(false);
   const [textTransformation, setTextTransformation] = useState('none');
+  const [caracterCount, setCaracterCount] = useState(0);
 
   const onCaps = (text) => {
     setTextTransformation('uppercase');
-    setChangedText(textInput);
+    setChangedText(text);
   };
 
   const onLower = (text) => {
@@ -20,6 +20,11 @@ export default function Home() {
     setChangedText(text);
   }
 
+  const onTextInputChange = ({target: { value }}) => {
+    setTextInput(value);
+    setCaracterCount(value.length);
+  }
+
   return (
     <div>
       <h1>Converta seus textos</h1>
@@ -29,13 +34,17 @@ export default function Home() {
           type="text" 
           id="textInput"
           value={ textInput }
-          onChange={ ({ target }) => setTextInput(target.value) }
+          onChange={ onTextInputChange }
         />
       </label>
       <button onClick={() => onCaps(textInput)}>UpperCase</button>
       <button onClick={() => onLower(textInput)}>LowerCase</button>
       <button onClick={() => capitalize(textInput)}>Capitalize</button>
       <p style={{ textTransform: textTransformation} }>{changedText}</p>
+      <span>
+        {'Quantidade de caracteres '}
+        {caracterCount}
+      </span>
     </div>
   );
 }
