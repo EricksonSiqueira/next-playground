@@ -8,6 +8,12 @@ export default function Home() {
     setTextInput(capsText);
   };
 
+  const onLower = (text) => {
+    const capsText = text.toLowerCase();
+
+    setTextInput(capsText);
+  };
+
   return (
     <div>
       <h1>Converta seus textos</h1>
@@ -21,6 +27,7 @@ export default function Home() {
         />
       </label>
       <button onClick={() => onCaps(textInput)}>UpperCase</button>
+      <button onClick={() => onLower(textInput)}>LowerCase</button>
       <p>{textInput}</p>
     </div>
   );
