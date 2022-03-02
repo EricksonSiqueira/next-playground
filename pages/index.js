@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 export default function Home() {
   const [textInput, setTextInput] = useState('');
 
+  const onCaps = (text) => {
+    const capsText = text.toUpperCase();
+
+    setTextInput(capsText);
+  };
+
   return (
     <div>
       <h1>Converta seus textos</h1>
@@ -14,7 +20,7 @@ export default function Home() {
           onChange={ ({ target }) => setTextInput(target.value) }
         />
       </label>
-
+      <button onClick={() => onCaps(textInput)}>UpperCase</button>
       <p>{textInput}</p>
     </div>
   );
