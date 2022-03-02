@@ -4,6 +4,7 @@ export default function Home() {
   const [changedText, setChangedText] = useState('');
   const [textTransformation, setTextTransformation] = useState('none');
   const [caracterCount, setCaracterCount] = useState(0);
+  // const [wordCount, setWordCount] = useState(0);
 
   const onCaps = (text) => {
     setTextTransformation('uppercase');
@@ -20,9 +21,22 @@ export default function Home() {
     setChangedText(text);
   }
 
+  // const wordCountTreated = (text) => {
+  //   const textTrimed = text.trim();
+  //   console.log(textTrimed);
+    
+  //   return textTrimed.length;
+  // }
+
   const onTextInputChange = ({target: { value }}) => {
     setTextInput(value);
     setCaracterCount(value.length);
+    // setWordCount(wordCountTreated(value));
+  }
+
+  const copytText = (text) => {
+    const changedTextP = document.querySelector('.changed-text');
+    navigator.clipboard.writeText(changedTextP.innerText);
   }
 
   return (
@@ -40,11 +54,16 @@ export default function Home() {
       <button onClick={() => onCaps(textInput)}>UpperCase</button>
       <button onClick={() => onLower(textInput)}>LowerCase</button>
       <button onClick={() => capitalize(textInput)}>Capitalize</button>
-      <p style={{ textTransform: textTransformation} }>{changedText}</p>
-      <span>
+      <button onClick={() => copytText(changedText)}>Copiar texto</button>
+      <p className="changed-text" style={{ textTransform: textTransformation} }>{changedText}</p>
+      <p>
         {'Quantidade de caracteres '}
         {caracterCount}
-      </span>
+      </p>
+      {/* <p>
+        {'Quantidade de palavras '}
+        {wordCount}
+      </p> */}
     </div>
   );
 }
